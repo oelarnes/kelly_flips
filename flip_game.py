@@ -10,7 +10,7 @@ P_WIN=0.6
 
 """
 for i in range(31):
-    print(max_ev(10*i+1, SIZE/2))
+    print(max_ev(10*i+1, int(SIZE/2)))
     
 print("EV of optimal solution at 300,2500: {}".format(max_ev(300,2500)))
 print("optimal first bet: {}".format(argmax_ev(300,2500)))
@@ -45,7 +45,7 @@ def functionalize(f):
     return helper
 
 def argmax_bimodal(f, range_):
-    eps = 1e-6
+    eps = 1e-7
     if len(range_) == 0:
         raise
     if len(range_) == 1:
@@ -66,7 +66,7 @@ def argmax_bimodal(f, range_):
     
     while end>start:
         mid = int((start+end)/2)
-        if del_g(mid)<=0:
+        if del_g(mid)<=eps:
             end=mid
         else:
             start=mid+1
